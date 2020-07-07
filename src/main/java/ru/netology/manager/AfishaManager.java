@@ -1,32 +1,29 @@
 package ru.netology.manager;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import ru.netology.domain.Film;
+import ru.netology.repository.AfishaRepository;
 
-@AllArgsConstructor
-@NoArgsConstructor
+public class AfishaManager {
 
-public class FilmManager {
-
-    private Film[] films = new Film[0];
+    private AfishaRepository repository;
     int currentLength = 10;
     int newLength;
 
-    public FilmManager(int newLength) {
+    public AfishaManager(AfishaRepository repository) {
+        this.repository = repository;
+    }
+
+    public AfishaManager(int newLength) {
         this.newLength = newLength;
     }
 
     public void add(Film film) {
-        int length = films.length + 1;
-        Film[] tmp = new Film[length];
-        System.arraycopy(films, 0, tmp, 0, films.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = film;
-        films = tmp;
+        repository.save(film);
     }
 
     public Film[] getAll() {
+        Film[] films = repository.findAll();
+        Film[] result = new Film[newLength];
 
         if (newLength > currentLength) {
             newLength = currentLength;
@@ -37,12 +34,19 @@ public class FilmManager {
         if (films.length < newLength) {
             newLength = films.length;
         }
-
-        Film[] result = new Film[newLength];
         for (int i = 0; i < result.length; i++) {
             int index = films.length - i - 1;
             result[i] = films[index];
         }
         return result;
     }
+
+    public void removeById(int id) {
+        repository.removeById(id);
+    }
+
+    public void findById(int id) {repository.findById(id);}
+
+    public void removeAll() {repository.removeAll();}
+
 }

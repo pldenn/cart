@@ -1,9 +1,7 @@
 package ru.netology.manager;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Film;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class TestFilmManager {
