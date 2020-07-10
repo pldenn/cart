@@ -13,11 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import  static  org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class TestAfishaManagerWithMock {
+class AfishaManagerMockTest {
+
     @Mock
     private AfishaRepository repository = new AfishaRepository();
     @InjectMocks
-    private AfishaManager manager = new AfishaManager(repository,3);
+    private AfishaManager manager = new AfishaManager(repository);
     private Film first = new Film(1, 1, "Бладшот", "боевик");
     private Film second = new Film(2, 2, "Вперед", "мультфильм");
     private Film third = new Film(3, 3, "Отель Белград ", "комедия");
@@ -30,30 +31,9 @@ class TestAfishaManagerWithMock {
     private Film tenth = new Film(10, 10, "Час пик", "комедия");
     private Film eleventh = new Film(11, 11, "Час пик 2", "комедия");
 
-    @BeforeEach
-    public void setUp(){
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-    }
 
     @Test
-    public void shouldRemoveIfExists() {
-        int idToRemove = 1;
-        //настройка заглушки
-        Film[] returned = new Film[]{second, third}; // определяем что будем возвращать
-        doReturn(returned).when(repository).findAll(); //создание мока (что и когда будем возвращать)
-        doNothing().when(repository).removeById(idToRemove);  //создание мока (что и когда будем возвращать)
-
-        manager.removeById(idToRemove);
-        Film[] expected = new Film[]{third, second};
-        Film[] actual = manager.getAll();
-        assertArrayEquals(expected, actual);
-
-    }
-
-    @Test
-    public void should() {
+    public void shouldFlipOver () {
 
         //настройка заглушки
         Film[] returned = new Film[]{second, third}; // определяем что будем возвращать
@@ -64,7 +44,4 @@ class TestAfishaManagerWithMock {
         assertArrayEquals(expected, actual);
 
     }
-
-
-
 }
