@@ -5,7 +5,6 @@ import ru.netology.domain.Film;
 public class AfishaRepository {
     private Film[] films = new Film[0];
 
-
     public void save(Film film) {
         int length = films.length + 1;
         Film[] tmp = new Film[length];
@@ -19,7 +18,7 @@ public class AfishaRepository {
         return films;
     }
 
-    public void findById(int id) {
+    public Film[] findById(int id) {
         Film[] tmp = new Film[1];
         for (Film film : films) {
             if (film.getId() == id) {
@@ -27,9 +26,10 @@ public class AfishaRepository {
             }
         }
         films = tmp;
+        return films;
+    }
 
-            }
-    public void removeById(int id) {
+    public Film[] removeById(int id) {
         int length = films.length - 1;
         Film[] tmp = new Film[length];
         int index = 0;
@@ -40,8 +40,10 @@ public class AfishaRepository {
             }
         }
         films = tmp;
+        return films;
     }
+
     public Film[] removeAll() {
-       return films = new Film[0];
+        return films = new Film[0];
     }
-        }
+}

@@ -14,9 +14,8 @@ public class AfishaManager {
 
     public AfishaManager(AfishaRepository repository, int newLength) {
         this.repository = repository;
-        this.currentLength = newLength;
+        this.newLength = newLength;
     }
-
 
     public void add(Film film) {
         repository.save(film);
@@ -24,12 +23,14 @@ public class AfishaManager {
 
     public Film[] getAll() {
         Film[] films = repository.findAll();
+
         if (newLength <= 0 || newLength > currentLength) {
             newLength = currentLength;
         }
         if (films.length < newLength) {
             newLength = films.length;
         }
+
         Film[] result = new Film[newLength];
 
         for (int i = 0; i < result.length; i++) {
@@ -50,5 +51,4 @@ public class AfishaManager {
     public void removeAll() {
         repository.removeAll();
     }
-
 }

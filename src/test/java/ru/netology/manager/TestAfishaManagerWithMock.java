@@ -10,7 +10,7 @@ import ru.netology.domain.Film;
 import ru.netology.repository.AfishaRepository;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import  static  org.mockito.Mockito.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AfishaManagerMockTest {
@@ -33,15 +33,61 @@ class AfishaManagerMockTest {
 
 
     @Test
-    public void shouldFlipOver () {
+    public void shouldGetLastAddedWhenLengthAtTheBorder() {
 
         //настройка заглушки
-        Film[] returned = new Film[]{second, third}; // определяем что будем возвращать
+        Film[] returned = new Film[]{first, second}; // определяем что будем возвращать
         doReturn(returned).when(repository).findAll(); //создание мока (что и когда будем возвращать)
 
-        Film[] expected = new Film[]{third, second};
+        AfishaManager manager = new AfishaManager(repository, 2);
+
+        Film[] expected = new Film[]{second, first};
         Film[] actual = manager.getAll();
+
         assertArrayEquals(expected, actual);
 
     }
+
+    @Test
+    public void shouldGetLastAddedWhenLengthOverDefault() {
+
+        //настройка заглушки
+        Film[] returned = new Film[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh}; // определяем что будем возвращать
+        doReturn(returned).when(repository).findAll(); //создание мока (что и когда будем возвращать)
+
+        AfishaManager manager = new AfishaManager(repository, 11);
+
+        Film[] expected = new Film[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        Film[] actual = manager.getAll();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetEmptyWhenLengthZero() {
+
+        //настройка заглушки
+        Film[] returned = new Film[]{}; // определяем что будем возвращать
+        doReturn(returned).when(repository).findAll(); //создание мока (что и когда будем возвращать)
+
+        AfishaManager manager = new AfishaManager(repository, 0);
+
+        Film[] expected = new Film[]{};
+        Film[] actual = manager.getAll();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetEmptyWhenLengthMinus() {
+
+        //настройка заглушки
+        Film[] returned = new Film[]{}; // определяем что будем возвращать
+        doReturn(returned).when(repository).findAll(); //создание мока (что и когда будем возвращать)
+
+        AfishaManager manager = new AfishaManager(repository, -1);
+
+        Film[] expected = new Film[]{};
+        Film[] actual = manager.getAll();
+        assertArrayEquals(expected, actual);
+    }
+
 }
