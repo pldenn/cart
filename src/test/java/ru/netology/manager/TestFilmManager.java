@@ -9,17 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public class TestFilmManager {
 
     private FilmManager manager;
-    private Film first = new Film(1, 1, "Бладшот", "боевик");
-    private Film second = new Film(2, 2, "Вперед", "мультфильм");
-    private Film third = new Film(3, 3, "Отель Белград ", "комедия");
-    private Film fourth = new Film(4, 4, "Русалочка", "мультфильм");
-    private Film fifth = new Film(5, 5, "Вверх", "мультфильм");
-    private Film sixth = new Film(6, 6, "Чудаки", "комедия");
-    private Film seventh = new Film(7, 7, "Крепкий орешек", "боевик");
-    private Film eighth = new Film(8, 8, "Тачки", "мультфильм");
-    private Film ninth = new Film(9, 9, "Тупой и еще тупее", "комедия");
-    private Film tenth = new Film(10, 10, "Час пик", "комедия");
-    private Film eleventh = new Film(11, 11, "Час пик 2", "комедия");
+    private Film first = new Film(1, "Бладшот", "боевик");
+    private Film second = new Film(2, "Вперед", "мультфильм");
+    private Film third = new Film(3, "Отель Белград ", "комедия");
+    private Film fourth = new Film(4, "Русалочка", "мультфильм");
+    private Film fifth = new Film(5, "Вверх", "мультфильм");
+    private Film sixth = new Film(6, "Чудаки", "комедия");
+    private Film seventh = new Film(7, "Крепкий орешек", "боевик");
+    private Film eighth = new Film(8, "Тачки", "мультфильм");
+    private Film ninth = new Film(9, "Тупой и еще тупее", "комедия");
+    private Film tenth = new Film(10, "Час пик", "комедия");
+    private Film eleventh = new Film(11, "Час пик 2", "комедия");
 
     @Test
     void ShouldShowOnlyLast10WhenAddedMore() {
