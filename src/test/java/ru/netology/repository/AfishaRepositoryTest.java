@@ -38,9 +38,8 @@ class AfishaRepositoryTest {
 
     @Test
     void findById() {
-        Film[] expected = new Film[]{second};
-        Film[] actual = repository.findById(2);
-        assertArrayEquals(expected, actual);
+        Film actual = repository.findById(2);
+        assertEquals(second,actual);
     }
 
     @Test
